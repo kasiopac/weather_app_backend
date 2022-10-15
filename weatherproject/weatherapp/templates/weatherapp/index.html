@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="description"/>
+    <meta name="author" content="author" />
+    <meta name="keywords" content="keywords" />
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="./stylesheet.css" type="text/css" />
+  </head>
+  <body>
+
+    <form method="POST" > {% csrf_token %}
+      <input type="text" placeholder="Wprowadź miasto", name="city"/>
+
+    </form>
+    {% if city %}
+      <h1>{{ city }} </h1>
+      <h1>{{ today }}</h1>
+      <h1>{{ current_description }}</h1>
+      <h1>{{ current_temp }}</h1>
+      <img src="http://openweathermap.org/img/w/{{current_icon}}.png" width="150px">
+    <h1>Prognoza na kolejne 48 godzin:</h1>
+    <h1>{{ hourly_forecast }}</h1>
+    <h1>Prognoza na kolejne 5 dni:</h1>
+    <h1>{{ daily_forecast }}</h1>
+
+
+    {% endif %}
+
+  </body>
+</html>
