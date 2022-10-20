@@ -1,0 +1,13 @@
+{% extends "weatherapp/base.html" %}
+
+{% block title %}Logowanie{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+	    {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Zaloguj</button>
+        <p>Nie masz konta? Zarejestruj się <a href="/register">tutaj</a></p>
+    </form>
+{% endblock %}
