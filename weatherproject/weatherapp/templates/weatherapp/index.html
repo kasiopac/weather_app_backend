@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="description"/>
-    <meta name="author" content="author" />
-    <meta name="keywords" content="keywords" />
-    <title>WeatherApp</title>
-    <link rel="stylesheet" href="./stylesheet.css" type="text/css" />
-  </head>
-  <body>
+{% extends "weatherapp/base.html" %}
+{% load crispy_forms_tags %}
 
-    <form method="POST" > {% csrf_token %}
-      <input type="text" placeholder="Wprowadź miasto", name="city"/>
+{% block title %}Pogodynka{% endblock %}
+
+{% block content %}
+      {% if not user.is_authenticated %}
+        <form method="POST" > {% csrf_token %}
+        <input type="text" placeholder="Wprowadź miasto", name="city"/>
+        <p>Aby ustawić swoje ulubione miasto, zaloguj się <a href="/login">tutaj</a></p>
+          <p>Nie masz konta? Zarejestruj się <a href="/register">tutaj</a></p>
+
+      {% else %}
+          <p>Wyloguj się <a href="/logout">tutaj</a></p>
+
+      {% endif %}
+
 
     </form>
     {% if city %}
@@ -28,5 +31,4 @@
 
     {% endif %}
 
-  </body>
-</html>
+{% endblock %}
